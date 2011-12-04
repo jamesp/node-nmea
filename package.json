@@ -1,0 +1,9 @@
+{
+    "name": "nmea",
+    "description": "A parser for the NMEA 0183 GPS Receiver protocol",
+    "version": "0.0.1",
+    "author": "James Penn <james@jamespenn.co.uk>",
+    "main": "nmea",
+    "keywords": ["gps", "nmea"],
+    "repository": "git://github.com/jamesp/node-nmea"   
+}
