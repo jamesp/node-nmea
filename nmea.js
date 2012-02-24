@@ -91,7 +91,7 @@ exports.parsers = {
         // $GPGSV,3,1,12, 05,58,322,36, 02,55,032,, 26,50,173,, 04,31,085,
         var numRecords = (fields.length - 4) / 4,
             sats = [];
-        for (var i=1; i < numRecords; i++) {
+        for (var i=0; i < numRecords; i++) {
             var offset = i * 4 + 4;
             sats.push({id: fields[offset],
                        elevationDeg: +fields[offset+1],
