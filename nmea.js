@@ -57,8 +57,7 @@ exports.parsers = {
             trackTrue: +fields[8],
             date: fields[9],
             variation: +fields[10],
-            variationPole: fields[11],
-            checksum: fields[12]
+            variationPole: fields[11]
         };
     },
     VTG: function(fields) {
@@ -67,8 +66,7 @@ exports.parsers = {
             trackTrue: +fields[1],
             trackMagnetic: +fields[3],
             speedKnots: +fields[5],
-            speedKmph: +fields[7],
-            checksum: fields[9]
+            speedKmph: +fields[7]
         };
     },
     GSA: function(fields) {
