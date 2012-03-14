@@ -111,9 +111,16 @@ exports.parsers = {
 exports.parse = function(line) {
     if (validLine(line)) {
         var fields = line.split('*')[0].split(','),
-            talker_id = fields[0].substr(1, 2),
-            msg_fmt = fields[0].substr(3),
-            parser = exports.parsers[msg_fmt];
+            talker_id,
+            msg_fmt;
+        if (fields[0].charAt(1) == 'P') {
+            talker_id = 'P'; // Proprietary
+            msg_fmt = fields[0].substr(2);
+        } else {
+            talker_id = fields[0].substr(1, 2);
+            msg_fmt = fields[0].substr(3);
+        }
+        parser = exports.parsers[msg_fmt];
         if (parser) {
             var val = parser(fields);
             val.talker_id = talker_id;
