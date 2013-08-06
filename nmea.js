@@ -37,10 +37,10 @@ exports.parsers = {
         return {
             type: 'geo-position',
             timestamp: fields[5],
-            lat: fields[2],
-            latPole: fields[3],
-            lon: fields[4],
-            lonPole: fields[5],
+            lat: fields[1],
+            latPole: fields[2],
+            lon: fields[3],
+            lonPole: fields[4],
             status: fields[6] == 'A' ? 'valid' : 'invalid'
         };
     },
