@@ -194,7 +194,9 @@ Field Number:
             distance: fields[10],
             id: fields[12]
         }
-    }
+    },
+  DBT: require('./codecs/DBT.js').decode,
+  MWV: require('./codecs/MWV.js').decode
 };
 exports.parse = function(line) {
     if (validLine(line)) {
