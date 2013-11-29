@@ -11,3 +11,16 @@ describe('MWV parsing', function () {
     msg.should.have.property('status', 'A');
   });
 });
+
+describe('MWV encoding', function () {
+  it('parses ok', function () {
+    var nmeaMsg = require("../nmea.js").encode('XX', {
+      type: 'wind',
+      angle: 17,
+      reference: 'R',
+      speed: 2.91,
+      units: 'N',
+      status: 'A'});
+    nmeaMsg.should.equal("$XXMWV,017.0,R,2.91,N,A*01");
+  });
+});
