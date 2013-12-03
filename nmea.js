@@ -1,5 +1,9 @@
 // A NMEA-0183 parser based on the format given here: http://www.tronico.fi/OH6NT/docs/NMEA0183.pdf
 
+var MWV = require('./codecs/MWV.js');
+var VTG = require('./codecs/VTG.js');
+
+
 var validLine = function(line) {
     // check that the line passes checksum validation
     // checksum is the XOR of all characters between $ and * in the message.
@@ -58,15 +62,6 @@ exports.parsers = {
             date: fields[9],
             variation: +fields[10],
             variationPole: fields[11]
-        };
-    },
-    VTG: function(fields) {
-        return {
-            type: 'track-info',
-            trackTrue: +fields[1],
-            trackMagnetic: +fields[3],
-            speedKnots: +fields[5],
-            speedKmph: +fields[7]
         };
     },
     APB: function(fields) {
@@ -196,8 +191,15 @@ Field Number:
         }
     },
   DBT: require('./codecs/DBT.js').decode,
-  MWV: require('./codecs/MWV.js').decode
+  MWV: MWV.decode,
+  VTG: VTG.decode
 };
+
+exports.encoders = new Object();
+
+exports.encoders[MWV.TYPE] = MWV;
+exports.encoders[VTG.TYPE] = VTG;
+
 exports.parse = function(line) {
     if (validLine(line)) {
         var fields = line.split('*')[0].split(','),
@@ -218,3 +220,15 @@ exports.parse = function(line) {
         }
     }
 };
+
+exports.encode = function(talker, msg) {
+  if (typeof msg === undefined) {
+    throw new Error("Can not encode undefined");
+  }
+  encoder = exports.encoders[msg.type];
+  if (encoder) {
+    return encoder.encode(talker, msg);
+  } else {
+    throw Error("No encoder for type:" + msg.type);
+  }
+}
