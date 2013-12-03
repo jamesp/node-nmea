@@ -21,6 +21,6 @@ describe('MWV encoding', function () {
       speed: 2.91,
       units: 'N',
       status: 'A'});
-    nmeaMsg.should.equal("$XXMWV,017.0,R,2.91,N,A*01");
+    nmeaMsg.should.equal("$XXMWV,017.00,R,2.91,N,A*31");
   });
 });

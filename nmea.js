@@ -1,6 +1,7 @@
 // A NMEA-0183 parser based on the format given here: http://www.tronico.fi/OH6NT/docs/NMEA0183.pdf
 
 var MWV = require('./codecs/MWV.js');
+var VTG = require('./codecs/VTG.js');
 
 
 var validLine = function(line) {
@@ -61,15 +62,6 @@ exports.parsers = {
             date: fields[9],
             variation: +fields[10],
             variationPole: fields[11]
-        };
-    },
-    VTG: function(fields) {
-        return {
-            type: 'track-info',
-            trackTrue: +fields[1],
-            trackMagnetic: +fields[3],
-            speedKnots: +fields[5],
-            speedKmph: +fields[7]
         };
     },
     APB: function(fields) {
@@ -199,12 +191,14 @@ Field Number:
         }
     },
   DBT: require('./codecs/DBT.js').decode,
-  MWV: MWV.decode
+  MWV: MWV.decode,
+  VTG: VTG.decode
 };
 
 exports.encoders = new Object();
 
 exports.encoders[MWV.TYPE] = MWV;
+exports.encoders[VTG.TYPE] = VTG;
 
 exports.parse = function(line) {
     if (validLine(line)) {

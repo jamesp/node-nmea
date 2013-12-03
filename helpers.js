@@ -180,7 +180,7 @@ exports.encodeDegrees = function(d) {
   if(d === undefined) {
     return '';
   }
-  return exports.padLeft(d.toFixed(1), 5, '0');
+  return exports.padLeft(d.toFixed(2), 6, '0');
 };
 
 exports.encodeDate = function(d) {
