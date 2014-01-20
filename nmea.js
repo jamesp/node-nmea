@@ -212,7 +212,7 @@ exports.parse = function(line) {
             talker_id = fields[0].substr(1, 2);
             msg_fmt = fields[0].substr(3);
         }
-        parser = exports.parsers[msg_fmt];
+        var parser = exports.parsers[msg_fmt];
         if (parser) {
             var val = parser(fields);
             val.talker_id = talker_id;
