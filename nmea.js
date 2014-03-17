@@ -2,6 +2,7 @@
 
 var MWV = require('./codecs/MWV.js');
 var VTG = require('./codecs/VTG.js');
+var DBT = require('./codecs/DBT.js');
 
 
 var validLine = function(line) {
@@ -190,7 +191,7 @@ Field Number:
             id: fields[12]
         }
     },
-  DBT: require('./codecs/DBT.js').decode,
+  DBT: DBT.decode,
   MWV: MWV.decode,
   VTG: VTG.decode
 };
@@ -199,6 +200,7 @@ exports.encoders = new Object();
 
 exports.encoders[MWV.TYPE] = MWV;
 exports.encoders[VTG.TYPE] = VTG;
+exports.encoders[DBT.TYPE] = DBT;
 
 exports.parse = function(line) {
     if (validLine(line)) {

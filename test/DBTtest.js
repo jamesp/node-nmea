@@ -8,3 +8,15 @@ describe('DBT parsing', function () {
     msg.should.have.property('depthMeters', 11.10);
   });
 });
+
+describe('DBT encoding', function () {
+  it('encodes ok', function () {
+    var nmeaMsg = require("../nmea.js").encode('II', {
+      type: 'depth-transducer',
+      depthFeet: 36.41,
+      depthFathoms: 5.99,
+      depthMeters: 11.10
+    });
+    nmeaMsg.should.equal("$IIDBT,36.41,f,11.10,M,5.99,F*25");
+  });
+});
