@@ -8,6 +8,7 @@ var BWC = require('./codecs/BWC.js');
 var GSV = require('./codecs/GSV.js');
 var GSA = require('./codecs/GSA.js');
 var GGA = require('./codecs/GGA.js');
+var RMC = require('./codecs/RMC.js');
 
 
 var validLine = function(line) {
@@ -24,22 +25,7 @@ var validLine = function(line) {
 
 exports.parsers = {
     GGA: GGA.decode,
-    RMC: function(fields) {
-        return {
-            type: 'nav-info',
-            timestamp: fields[1],
-            status: fields[2] == 'V' ? 'warning' : 'valid',
-            lat: fields[3],
-            latPole: fields[4],
-            lon: fields[5],
-            lonPole: fields[6],
-            speedKnots: +fields[7],
-            trackTrue: +fields[8],
-            date: fields[9],
-            variation: +fields[10],
-            variationPole: fields[11]
-        };
-    },
+    RMC: RMC.decode,
     APB: function(fields) {
 /*
 === APB - Autopilot Sentence "B" ===
