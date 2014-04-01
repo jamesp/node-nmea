@@ -216,8 +216,8 @@ exports.parse = function(line) {
 };
 
 exports.encode = function(talker, msg) {
-  if (typeof msg === undefined) {
-    throw new Error("Can not encode undefined");
+  if (typeof msg === 'undefined') {
+    throw new Error("Can not encode undefined, did you forget msg parameter?");
   }
   encoder = exports.encoders[msg.type];
   if (encoder) {
