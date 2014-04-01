@@ -25,6 +25,7 @@ exports.ID = 'DBT';
 
 exports.decode = function(fields) {
   return {
+    sentence: exports.ID,
     type: exports.TYPE,
     depthMeters: +fields[3],
     depthFeet: +fields[1]
