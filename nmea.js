@@ -6,6 +6,7 @@ var DBT = require('./codecs/DBT.js');
 var GLL = require('./codecs/GLL.js');
 var BWC = require('./codecs/BWC.js');
 var GSV = require('./codecs/GSV.js');
+var GSA = require('./codecs/GSA.js');
 
 
 var validLine = function(line) {
@@ -111,22 +112,7 @@ Field Number:
             headingDestType : fields[14]
         }
     },
-    GSA: function(fields) {
-      // $GPGSA,A,3,12,05,25,29,,,,,,,,,9.4,7.6,5.6
-       var sats = [];
-       for (var i=1; i < 13; i++) {
-           if (fields[i+2]) sats.push(+fields[i+2]);
-       };
-       return {
-          type: 'active-satellites',
-          selectionMode: fields[1],
-          mode: +fields[2],
-          satellites: sats,
-          PDOP: fields[15],
-          HDOP: fields[16],
-          VDOP: fields[17]
-      };
-    },
+  GSA: GSA.decode,
   GSV: GSV.decode,
   BWC: BWC.decode,
   DBT: DBT.decode,
