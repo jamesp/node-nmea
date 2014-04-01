@@ -3,6 +3,7 @@
 var MWV = require('./codecs/MWV.js');
 var VTG = require('./codecs/VTG.js');
 var DBT = require('./codecs/DBT.js');
+var GLL = require('./codecs/GLL.js');
 
 
 var validLine = function(line) {
@@ -36,17 +37,6 @@ exports.parsers = {
             geoidalSepUnit: fields[12],
             differentialAge: +fields[13],
             differentialRefStn: fields[14],
-        };
-    },
-    GLL: function(fields) {
-        return {
-            type: 'geo-position',
-            timestamp: fields[5],
-            lat: fields[1],
-            latPole: fields[2],
-            lon: fields[3],
-            lonPole: fields[4],
-            status: fields[6] == 'A' ? 'valid' : 'invalid'
         };
     },
     RMC: function(fields) {
@@ -193,7 +183,8 @@ Field Number:
     },
   DBT: DBT.decode,
   MWV: MWV.decode,
-  VTG: VTG.decode
+  VTG: VTG.decode,
+  GLL: GLL.decode
 };
 
 exports.encoders = new Object();
@@ -201,6 +192,7 @@ exports.encoders = new Object();
 exports.encoders[MWV.TYPE] = MWV;
 exports.encoders[VTG.TYPE] = VTG;
 exports.encoders[DBT.TYPE] = DBT;
+exports.encoders[GLL.TYPE] = GLL;
 
 exports.parse = function(line) {
     if (validLine(line)) {
