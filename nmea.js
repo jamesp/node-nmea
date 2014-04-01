@@ -7,6 +7,7 @@ var GLL = require('./codecs/GLL.js');
 var BWC = require('./codecs/BWC.js');
 var GSV = require('./codecs/GSV.js');
 var GSA = require('./codecs/GSA.js');
+var GGA = require('./codecs/GGA.js');
 
 
 var validLine = function(line) {
@@ -22,26 +23,7 @@ var validLine = function(line) {
 };
 
 exports.parsers = {
-    GGA: function(fields) {
-        var FIX_TYPE = ['none', 'fix', 'delta'];
-        return {
-            type: 'fix',
-            timestamp: fields[1],
-            lat: fields[2],
-            latPole: fields[3],
-            lon: fields[4],
-            lonPole: fields[5],
-            fixType: FIX_TYPE[+fields[6]],
-            numSat: +fields[7],
-            horDilution: +fields[8],
-            alt: +fields[9],
-            altUnit: fields[10],
-            geoidalSep: +fields[11],
-            geoidalSepUnit: fields[12],
-            differentialAge: +fields[13],
-            differentialRefStn: fields[14],
-        };
-    },
+    GGA: GGA.decode,
     RMC: function(fields) {
         return {
             type: 'nav-info',
