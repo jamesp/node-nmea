@@ -22,6 +22,7 @@ exports.ID = 'MWV';
 
 exports.decode = function(fields) {
   return {
+    sentence: exports.ID,
     type: exports.TYPE,
     angle: +fields[1],
     reference: fields[2],
