@@ -45,6 +45,7 @@ exports.ID = 'VTG';
 
 exports.decode = function (fields) {
   return {
+    sentence: exports.ID,
     type: 'track-info',
     trackTrue: +fields[1],
     trackMagnetic: +fields[3],
