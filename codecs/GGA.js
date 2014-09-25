@@ -2,7 +2,7 @@ exports.TYPE = 'fix';
 exports.ID = 'GGA';
 
 exports.decode = function(fields) {
-  var FIX_TYPE = ['none', 'fix', 'delta'];
+  var FIX_TYPE = ['none', 'fix', 'delta','pps','rtk','frtk','estimated','manual','simulation'];
   return {
     sentence: exports.ID,
     type: exports.TYPE,
