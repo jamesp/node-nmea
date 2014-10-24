@@ -24,7 +24,7 @@ var validLine = function(line) {
     return checkVal == parseInt(parts[1], 16);
 };
 
-exports.parsers = {
+exports.traditionalDecoders = {
   GGA: GGA.decode,
   RMC: RMC.decode,
   APB: APB.decode,
@@ -80,3 +80,13 @@ exports.encode = function(talker, msg) {
     throw Error("No encoder for type:" + msg.type);
   }
 }
+
+exports.createDefaultTransformer = function (options) {
+  var stream = require('through')(function (data) {
+    try {
+      stream.queue(exports.parse(data));
+    } catch (e) {
+    }
+  });
+  return stream;
+};
