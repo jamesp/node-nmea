@@ -58,10 +58,6 @@ exports.toSignalK = function (fields) {
   return {
     "updates": [
       {
-        "source": {
-          "sentence": exports.ID,
-          "timestamp": new Date() + "FIXME"
-        },
         "values": [
           { "key": "navigation.courseOverGroundTrue", "value": +fields[1] },
           { "key": "navigation.courseOverGroundMagnetic", "value": +fields[3] },

@@ -56,12 +56,16 @@ function signalKDecoder(msg_fmt) {
   }
 }
 
-exports.toSignalK = function(line) {
+exports.toSignalK = function (line) {
   return doParse(line, signalKDecoder, setSignalKTalkerId)
 }
 
-setSignalKTalkerId = function(item, talkerId) {
-  item.updates[0].source.talkerId = talkerId;
+setSignalKTalkerId = function (item, talkerId, sentence) {
+  item.updates[0].source = {
+    talkerId: talkerId,
+    "sentence": sentence,
+    "timestamp": new Date() + "FIXME"
+  }
 }
 
 exports.encoders = new Object();
@@ -91,7 +95,7 @@ function doParse(line, getParser, setTalker) {
     var parser = getParser(msg_fmt);
     if (parser) {
       var val = parser(fields);
-      setTalker(val, talker_id);
+      setTalker(val, talker_id, msg_fmt);
       return val;
     } else {
       throw Error("Error in parsing:" + line);
