@@ -38,6 +38,31 @@ exports.traditionalDecoders = {
   GLL: GLL.decode
 };
 
+function defaultDecoder(msg_fmt) {
+  return exports.traditionalDecoders[msg_fmt];
+}
+function defaultSetTalkerId(item, talkerId) {
+  item.talker_id = talkerId;
+}
+
+exports.signalKDecoders = {
+}
+
+function signalKDecoder(msg_fmt) {
+  var decoder = exports.signalKDecoders[msg_fmt];
+  if (decoder) {
+    return decoder.toSignalK;
+  }
+}
+
+exports.toSignalK = function(line) {
+  return doParse(line, signalKDecoder, setSignalKTalkerId)
+}
+
+setSignalKTalkerId = function(item, talkerId) {
+  item.updates[0].source.talkerId = talkerId;
+}
+
 exports.encoders = new Object();
 
 exports.encoders[MWV.TYPE] = MWV;
@@ -45,7 +70,12 @@ exports.encoders[VTG.TYPE] = VTG;
 exports.encoders[DBT.TYPE] = DBT;
 exports.encoders[GLL.TYPE] = GLL;
 
+
 exports.parse = function (line) {
+  return doParse(line, defaultDecoder, defaultSetTalkerId)
+}
+
+function doParse(line, getParser, setTalker) {
   if (validLine(line)) {
     var fields = line.split('*')[0].split(','),
       talker_id,
@@ -57,10 +87,10 @@ exports.parse = function (line) {
       talker_id = fields[0].substr(1, 2);
       msg_fmt = fields[0].substr(3);
     }
-    var parser = exports.traditionalDecoders[msg_fmt];
+    var parser = getParser(msg_fmt);
     if (parser) {
       var val = parser(fields);
-      val.talker_id = talker_id;
+      setTalker(val, talker_id);
       return val;
     } else {
       throw Error("Error in parsing:" + line);
@@ -69,6 +99,7 @@ exports.parse = function (line) {
     throw Error("Invalid line:" + line);
   }
 };
+
 
 exports.encode = function (talker, msg) {
   if (typeof msg === 'undefined') {
@@ -86,6 +117,16 @@ exports.createDefaultTransformer = function (options) {
   var stream = require('through')(function (data) {
     try {
       stream.queue(exports.parse(data));
+    } catch (e) {
+    }
+  });
+  return stream;
+};
+
+exports.createSignalKTransformer = function (options) {
+  var stream = require('through')(function (data) {
+    try {
+      stream.queue(exports.toSignalK(data));
     } catch (e) {
     }
   });
