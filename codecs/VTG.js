@@ -54,6 +54,24 @@ exports.decode = function (fields) {
   }
 };
 
+exports.toSignalK = function (fields) {
+  return {
+    "updates": [
+      {
+        "source": {
+          "sentence": exports.ID,
+          "timestamp": new Date() + "FIXME"
+        },
+        "values": [
+          { "key": "navigation.courseOverGroundTrue", "value": +fields[1] },
+          { "key": "navigation.courseOverGroundMagnetic", "value": +fields[3] },
+          { "key": "navigation.speedOverGround", "value": +fields[5] }
+        ]
+      }
+    ]
+  }
+}
+
 exports.encode = function (talker, msg) {
   var result = ['$' + talker + exports.ID];
   result.push(helpers.encodeDegrees(msg.trackTrue));
@@ -68,3 +86,4 @@ exports.encode = function (talker, msg) {
   var resultMsg = result.join(',');
   return resultMsg + helpers.computeChecksum(resultMsg);
 }
+
