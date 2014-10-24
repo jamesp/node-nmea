@@ -32,6 +32,19 @@ exports.decode = function(fields) {
   }
 }
 
+exports.toSignalK = function(fields) {
+  return {
+    "updates": [
+      {
+        "values": [
+          { "key": "navigation.depthBelowTransducer", "value": +fields[3] }
+        ]
+      }
+    ]
+  }
+
+}
+
 exports.encode = function (talker, msg) {
   var result = ['$' + talker + exports.ID];
   result.push(helpers.encodeFixed(msg.depthFeet,2));

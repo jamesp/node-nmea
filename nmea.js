@@ -46,7 +46,8 @@ function defaultSetTalkerId(item, talkerId) {
 }
 
 exports.signalKDecoders = {
-  VTG: VTG
+  VTG: VTG,
+  DBT: DBT
 }
 
 function signalKDecoder(msg_fmt) {
