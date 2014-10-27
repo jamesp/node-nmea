@@ -59,9 +59,9 @@ exports.toSignalK = function (fields) {
     "updates": [
       {
         "values": [
-          { "key": "navigation.courseOverGroundTrue", "value": +fields[1] },
-          { "key": "navigation.courseOverGroundMagnetic", "value": +fields[3] },
-          { "key": "navigation.speedOverGround", "value": +fields[5] }
+          { "path": "navigation.courseOverGroundTrue", "value": +fields[1] },
+          { "path": "navigation.courseOverGroundMagnetic", "value": +fields[3] },
+          { "path": "navigation.speedOverGround", "value": +fields[5] }
         ]
       }
     ]

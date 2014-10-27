@@ -37,7 +37,7 @@ exports.toSignalK = function(fields) {
     "updates": [
       {
         "values": [
-          { "key": "navigation.depthBelowTransducer", "value": +fields[3] }
+          { "path": "navigation.depthBelowTransducer", "value": +fields[3] }
         ]
       }
     ]
