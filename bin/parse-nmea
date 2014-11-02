@@ -1,0 +1,8 @@
+#!/usr/bin/env node
+
+var Liner = require('../liner.js');
+
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+
+process.stdin.pipe(new Liner()).pipe(require('../nmea.js').createDefaultTransformer()).pipe(require('JSONStream').stringify(false)).pipe(process.stdout);;

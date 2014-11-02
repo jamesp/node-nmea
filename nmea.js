@@ -12,19 +12,20 @@ var RMC = require('./codecs/RMC.js');
 var APB = require('./codecs/APB.js');
 
 
-var validLine = function(line) {
-    // check that the line passes checksum validation
-    // checksum is the XOR of all characters between $ and * in the message.
-    // checksum reference is provided as a hex value after the * in the message.
-    var checkVal = 0;
-    var parts = line.split('*');
-    for (var i=1; i < parts[0].length; i++) {
-        checkVal = checkVal ^ parts[0].charCodeAt(i);
-    };
-    return checkVal == parseInt(parts[1], 16);
+var validLine = function (line) {
+  // check that the line passes checksum validation
+  // checksum is the XOR of all characters between $ and * in the message.
+  // checksum reference is provided as a hex value after the * in the message.
+  var checkVal = 0;
+  var parts = line.split('*');
+  for (var i = 1; i < parts[0].length; i++) {
+    checkVal = checkVal ^ parts[0].charCodeAt(i);
+  }
+  ;
+  return checkVal == parseInt(parts[1], 16);
 };
 
-exports.parsers = {
+exports.traditionalDecoders = {
   GGA: GGA.decode,
   RMC: RMC.decode,
   APB: APB.decode,
@@ -44,32 +45,32 @@ exports.encoders[VTG.TYPE] = VTG;
 exports.encoders[DBT.TYPE] = DBT;
 exports.encoders[GLL.TYPE] = GLL;
 
-exports.parse = function(line) {
-    if (validLine(line)) {
-        var fields = line.split('*')[0].split(','),
-            talker_id,
-            msg_fmt;
-        if (fields[0].charAt(1) == 'P') {
-            talker_id = 'P'; // Proprietary
-            msg_fmt = fields[0].substr(2);
-        } else {
-            talker_id = fields[0].substr(1, 2);
-            msg_fmt = fields[0].substr(3);
-        }
-        var parser = exports.parsers[msg_fmt];
-        if (parser) {
-            var val = parser(fields);
-            val.talker_id = talker_id;
-            return val;   
-        } else {
-          throw Error("Error in parsing:" + line);
-        }
+exports.parse = function (line) {
+  if (validLine(line)) {
+    var fields = line.split('*')[0].split(','),
+      talker_id,
+      msg_fmt;
+    if (fields[0].charAt(1) == 'P') {
+      talker_id = 'P'; // Proprietary
+      msg_fmt = fields[0].substr(2);
     } else {
-      throw Error("Invalid line:" + line);
+      talker_id = fields[0].substr(1, 2);
+      msg_fmt = fields[0].substr(3);
     }
+    var parser = exports.traditionalDecoders[msg_fmt];
+    if (parser) {
+      var val = parser(fields);
+      val.talker_id = talker_id;
+      return val;
+    } else {
+      throw Error("Error in parsing:" + line);
+    }
+  } else {
+    throw Error("Invalid line:" + line);
+  }
 };
 
-exports.encode = function(talker, msg) {
+exports.encode = function (talker, msg) {
   if (typeof msg === 'undefined') {
     throw new Error("Can not encode undefined, did you forget msg parameter?");
   }
@@ -80,3 +81,13 @@ exports.encode = function(talker, msg) {
     throw Error("No encoder for type:" + msg.type);
   }
 }
+
+exports.createDefaultTransformer = function (options) {
+  var stream = require('through')(function (data) {
+    try {
+      stream.queue(exports.parse(data));
+    } catch (e) {
+    }
+  });
+  return stream;
+};

@@ -233,7 +233,7 @@ exports.encodeFixed = function(v, f) {
 };
 
 // =========================================
-// field parsers
+// field traditionalDecoders
 // =========================================
 
 // separate number and units
