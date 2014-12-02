@@ -10,7 +10,7 @@ var GSA = require('./codecs/GSA.js');
 var GGA = require('./codecs/GGA.js');
 var RMC = require('./codecs/RMC.js');
 var APB = require('./codecs/APB.js');
-
+var HDT = require('./codecs/HDT.js');
 
 var validLine = function (line) {
   // check that the line passes checksum validation
@@ -35,7 +35,8 @@ exports.traditionalDecoders = {
   DBT: DBT.decode,
   MWV: MWV.decode,
   VTG: VTG.decode,
-  GLL: GLL.decode
+  GLL: GLL.decode,
+  HDT: HDT.decode
 };
 
 exports.encoders = new Object();
