@@ -1,18 +1,18 @@
 var helpers = require("../helpers.js")
 /*
- === HDT - Heading from True Notrht ===
+ === HDT - Heading - True ===
 
  ------------------------------------------------------------------------------
- *******1   2 
- *******|   | 
- $--MWV,x.x,T,<CR><LF>
+        1   2 3
+        |   | |
+ $--HDT,x.x,T*hh
  ------------------------------------------------------------------------------
 
  Field Number:
 
- 1. Heading in degrees
- 2. T: Indicates heading relative to True North
- 3. Checksum
+ 1) Heading Degrees, true
+ 2) T = True
+ 3) Checksum
  */
 exports.TYPE = 'heading-info';
 exports.ID = 'HDT';
