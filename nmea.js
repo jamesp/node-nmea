@@ -45,6 +45,8 @@ exports.encoders[MWV.TYPE] = MWV;
 exports.encoders[VTG.TYPE] = VTG;
 exports.encoders[DBT.TYPE] = DBT;
 exports.encoders[GLL.TYPE] = GLL;
+exports.encoders[HDT.TYPE] = HDT;
+exports.encoders[GGA.TYPE] = GGA;
 
 exports.parse = function (line) {
   if (validLine(line)) {

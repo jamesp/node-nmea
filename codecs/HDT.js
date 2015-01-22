@@ -24,3 +24,11 @@ exports.decode = function (fields) {
     heading: +fields[1]
   }
 };
+
+exports.encode = function (talker, msg) {
+  var result = ['$' + talker + exports.ID];
+  result.push(helpers.encodeFixed(msg.heading, 1));
+  result.push('T');
+  var resultMsg = result.join(',');
+  return resultMsg + helpers.computeChecksum(resultMsg);
+};
