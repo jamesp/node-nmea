@@ -12,6 +12,9 @@ var RMC = require('./codecs/RMC.js');
 var APB = require('./codecs/APB.js');
 var HDT = require('./codecs/HDT.js');
 
+// export helpers
+module.exports.Helpers= require('./helpers.js');
+
 var validLine = function (line) {
   // check that the line passes checksum validation
   // checksum is the XOR of all characters between $ and * in the message.
@@ -94,3 +97,4 @@ exports.createDefaultTransformer = function (options) {
   });
   return stream;
 };
+
