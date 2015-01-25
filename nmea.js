@@ -12,6 +12,9 @@ var RMC = require('./codecs/RMC.js');
 var APB = require('./codecs/APB.js');
 var HDT = require('./codecs/HDT.js');
 
+// export helpers
+module.exports.Helpers= require('./helpers.js');
+
 var validLine = function (line) {
   // check that the line passes checksum validation
   // checksum is the XOR of all characters between $ and * in the message.
@@ -45,6 +48,8 @@ exports.encoders[MWV.TYPE] = MWV;
 exports.encoders[VTG.TYPE] = VTG;
 exports.encoders[DBT.TYPE] = DBT;
 exports.encoders[GLL.TYPE] = GLL;
+exports.encoders[HDT.TYPE] = HDT;
+exports.encoders[GGA.TYPE] = GGA;
 
 exports.parse = function (line) {
   if (validLine(line)) {
@@ -92,3 +97,4 @@ exports.createDefaultTransformer = function (options) {
   });
   return stream;
 };
+

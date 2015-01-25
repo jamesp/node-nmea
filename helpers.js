@@ -163,6 +163,14 @@ exports.encodeAltitude = function(alt) {
   return alt.toFixed(1) + ',M';
 };
 
+// 1 decimal, always meters
+exports.encodeGeoidalSeperation = function(geoidalSep) {
+  if(geoidalSep === undefined) {
+    return ',';
+  }
+  return geoidalSep.toFixed(1) + ',M';
+};
+
 // magnetic variation
 exports.encodeMagVar = function(v) {
   var a;
