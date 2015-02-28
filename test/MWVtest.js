@@ -1,4 +1,12 @@
-var should = require('should');
+var chai = require("chai");
+chai.Should();
+chai.use(require('chai-things'));
+chai.use(require('signalk-schema').chaiModule);
+
+var Multiplexer = require('signalk-multiplexer');
+
+
+
 
 describe('MWV parsing', function () {
   it('parses ok', function () {
@@ -23,5 +31,24 @@ describe('MWV encoding', function () {
       units: 'N',
       status: 'A'});
     nmeaMsg.should.equal("$XXMWV,017.00,R,2.91,N,A*31");
+  });
+});
+
+describe('MWV to SignalK', function () {
+  it('parses ok', function () {
+    var delta = require("../nmea.js").toSignalK("$IIMWV,017,R,02.91,N,A*2F");
+    delta.updates[0].values.should.include({
+      "path": "environment.wind.speedApparent",
+      "value": 2.91
+    });
+    delta.updates[0].values.should.include({
+      "path": "environment.wind.speedApparent",
+      "value": 2.91
+    });
+    delta.context = "vessels.12345";
+    var myMultiplexer = new Multiplexer('1234', 'uuid');
+    myMultiplexer.add(delta);
+    delta.should.be.validSignalKDelta;
+    myMultiplexer.retrieve().vessels['12345'].should.be.validSignalK;
   });
 });

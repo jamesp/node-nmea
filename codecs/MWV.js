@@ -32,6 +32,25 @@ exports.decode = function(fields) {
   }
 }
 
+exports.toSignalK = function(fields) {
+  var reference = fields[2] === 'R' ? 'Apparent' : 'True';
+  var values = [];
+  if (fields[2] === 'R') {
+    values.push({ "path": "environment.wind.speedApparent", "value": +fields[3] });
+    values.push({ "path": "environment.wind.angleApparent", "value": +fields[1] });
+  } else {
+    values.push({ "path": "environment.wind.speedTrue", "value": +fields[3] });
+    values.push({ "path": "environment.wind.angleTrue", "value": +fields[1] });
+  }
+  return {
+    "updates": [
+      {
+        "values": values
+      }
+    ]
+  };  
+}
+
 exports.encode = function(talker, msg) {
  var result = ['$' + talker + exports.ID];
   result.push(helpers.encodeDegrees(msg.angle));

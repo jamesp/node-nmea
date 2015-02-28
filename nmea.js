@@ -45,10 +45,16 @@ function defaultSetTalkerId(item, talkerId) {
   item.talker_id = talkerId;
 }
 
-exports.signalKDecoders = {
-  VTG: VTG,
-  DBT: DBT
-}
+exports.signalKDecoders = {}
+require('fs').readdirSync(__dirname + '/codecs/').forEach(function(file) {
+  if (file.match(/.+\.js/g) !== null) {
+    var name = file.replace('.js', '');
+    var module = require('./codecs/' + file);
+    if (typeof module.toSignalK === 'function') {
+      exports.signalKDecoders[module.ID] = module;
+    }
+  }
+});
 
 function signalKDecoder(msg_fmt) {
   var decoder = exports.signalKDecoders[msg_fmt];
@@ -63,9 +69,11 @@ exports.toSignalK = function (line) {
 
 setSignalKTalkerId = function (item, talkerId, sentence) {
   item.updates[0].source = {
-    talkerId: talkerId,
-    "sentence": sentence,
-    "timestamp": new Date() + "FIXME"
+//    talkerId: talkerId,
+//    "sentence": sentence,
+    "timestamp": new Date() + "FIXME",
+    "label": "emptylabel",
+    "type": "NMEA0183"
   }
 }
 
