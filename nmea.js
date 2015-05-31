@@ -11,6 +11,8 @@ var GGA = require('./codecs/GGA.js');
 var RMC = require('./codecs/RMC.js');
 var APB = require('./codecs/APB.js');
 var HDT = require('./codecs/HDT.js');
+var HDM = require('./codecs/HDM.js');
+
 
 // export helpers
 module.exports.Helpers= require('./helpers.js');
@@ -39,7 +41,8 @@ exports.traditionalDecoders = {
   MWV: MWV.decode,
   VTG: VTG.decode,
   GLL: GLL.decode,
-  HDT: HDT.decode
+  HDT: HDT.decode,
+  HDM: HDM.decode
 };
 
 exports.encoders = new Object();
@@ -50,6 +53,7 @@ exports.encoders[DBT.TYPE] = DBT;
 exports.encoders[GLL.TYPE] = GLL;
 exports.encoders[HDT.TYPE] = HDT;
 exports.encoders[GGA.TYPE] = GGA;
+exports.encoders[HDM.TYPE] = HDM;
 
 exports.parse = function (line) {
   if (validLine(line)) {
