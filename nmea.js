@@ -12,6 +12,7 @@ var RMC = require('./codecs/RMC.js');
 var APB = require('./codecs/APB.js');
 var HDT = require('./codecs/HDT.js');
 var HDM = require('./codecs/HDM.js');
+var RDID = require('./codecs/RDID.js');
 
 
 // export helpers
@@ -42,7 +43,8 @@ exports.traditionalDecoders = {
   VTG: VTG.decode,
   GLL: GLL.decode,
   HDT: HDT.decode,
-  HDM: HDM.decode
+  HDM: HDM.decode,
+  RDID: RDID.decode,
 };
 
 exports.encoders = new Object();
