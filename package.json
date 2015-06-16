@@ -1,7 +1,7 @@
 {
     "name": "nmea",
     "description": "A parser for the NMEA 0183 GPS Receiver protocol",
-    "version": "0.0.8",
+    "version": "0.0.9",
     "author": "James Penn <james@jamespenn.co.uk>",
     "main": "nmea",
     "keywords": ["gps", "nmea"],
