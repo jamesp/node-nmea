@@ -341,7 +341,7 @@ exports.parseDateTime = function(date, time) {
   var m = parseInt(time.slice(2, 4), 10);
   var s = parseInt(time.slice(4, 6), 10);
   var D = parseInt(date.slice(0, 2), 10);
-  var M = parseInt(date.slice(2, 4), 10);
+  var M = parseInt(date.slice(2, 4), 10) - 1;	 // UTC = 0..11
   var Y = parseInt(date.slice(4, 6), 10);
   // hack : GPRMC date doesn't specify century. GPS came out in 1973
   // so if year is less than 73 its 2000, otherwise 1900
