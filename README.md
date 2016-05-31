@@ -35,3 +35,11 @@ port.on('data', function(line) {
 //   talker_id: 'GP' }
 
 ````
+
+To add custom codecs
+====================
+````
+var MyCustom = require('./MyCustom.js');
+nmea.traditionalDecoders['MyCustomr'] = MyCustom.decode;
+````
+
