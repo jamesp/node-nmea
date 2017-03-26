@@ -13,6 +13,7 @@ var APB = require('./codecs/APB.js');
 var HDT = require('./codecs/HDT.js');
 var HDM = require('./codecs/HDM.js');
 var RDID = require('./codecs/RDID.js');
+var GRMT = require('./codecs/GRMT.js');
 
 
 // export helpers
@@ -45,6 +46,7 @@ exports.traditionalDecoders = {
   HDT: HDT.decode,
   HDM: HDM.decode,
   RDID: RDID.decode,
+  GRMT: GRMT.decode,
 };
 
 exports.encoders = new Object();

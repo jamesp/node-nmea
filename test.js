@@ -10,7 +10,8 @@ var s = [
 "$IIBWC,160947,6008.160,N,02454.290,E,162.4,T,154.3,M,001.050,N,DEST*1C",
 "$IIAPB,A,A,0.001,L,N,V,V,154.3,M,DEST,154.3,M,154.2,M*19",
 "$IIHDM,201.5,M*24",
-"$PRDID,-4.44,2.12,154.25*56"
+"$PRDID,-4.44,2.12,154.25*56",
+"$PGRMT,GPS19x-HVS Software Version 2.20,,,,,,,,*6F"
 ];
 
 for (var i=0; i < s.length; i++) {
