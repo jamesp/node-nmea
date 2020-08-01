@@ -22,8 +22,8 @@ exports.decode = function(fields) {
   return {
     sentence: exports.ID,
     type: exports.TYPE,
-    roll : fields[1],
-    pitch : fields[2],
-    heading : fields[3],
+    roll : +fields[1],
+    pitch : +fields[2],
+    heading : +fields[3],
   }
 }
