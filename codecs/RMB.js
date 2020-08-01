@@ -39,13 +39,13 @@ exports.decode = function(fields) {
     steer: fields[3],
     fromWaypoint: fields[4],
     toWaypoint: fields[5],
-    lat: +fields[6],
+    lat: parseFloat(fields[6]),
     latPole: fields[7],
-    lon: +fields[8],
+    lon: parseFloat(fields[8]),
     lonPole: fields[9],
-    range: +fields[10],
-    bearing: +fields[11],
-    vmg: +fields[12],
+    range: parseFloat(fields[10]),
+    bearing: parseFloat(fields[11]),
+    vmg: parseFloat(fields[12]),
     arrived: fields[13] == 'A' ? true : false
   };
 }
