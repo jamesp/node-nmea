@@ -8,6 +8,7 @@ var BWC = require('./codecs/BWC.js');
 var GSV = require('./codecs/GSV.js');
 var GSA = require('./codecs/GSA.js');
 var GGA = require('./codecs/GGA.js');
+var RMB = require('./codecs/RMB.js');
 var RMC = require('./codecs/RMC.js');
 var APB = require('./codecs/APB.js');
 var HDG = require('./codecs/HDG.js');
@@ -36,6 +37,7 @@ var validLine = function (line) {
 
 exports.traditionalDecoders = {
   GGA: GGA.decode,
+  RMB: RMB.decode,
   RMC: RMC.decode,
   APB: APB.decode,
   GSA: GSA.decode,
