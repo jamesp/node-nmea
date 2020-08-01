@@ -10,6 +10,7 @@ var GSA = require('./codecs/GSA.js');
 var GGA = require('./codecs/GGA.js');
 var RMC = require('./codecs/RMC.js');
 var APB = require('./codecs/APB.js');
+var HDG = require('./codecs/HDG.js');
 var HDT = require('./codecs/HDT.js');
 var HDM = require('./codecs/HDM.js');
 var RDID = require('./codecs/RDID.js');
@@ -43,6 +44,7 @@ exports.traditionalDecoders = {
   MWV: MWV.decode,
   VTG: VTG.decode,
   GLL: GLL.decode,
+  HDG: HDG.decode,
   HDT: HDT.decode,
   HDM: HDM.decode,
   RDID: RDID.decode,
