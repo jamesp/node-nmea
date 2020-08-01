@@ -34,6 +34,6 @@ exports.decode = function(fields) {
     direction: fields[2],
     speedKnots: +fields[3],
     speedMs: +fields[5],
-    speedKmph: fields[7]
+    speedKmph: +fields[7]
   }
 }
