@@ -15,6 +15,7 @@ var HDT = require('./codecs/HDT.js');
 var HDM = require('./codecs/HDM.js');
 var RDID = require('./codecs/RDID.js');
 var GRMT = require('./codecs/GRMT.js');
+var VWR = require('./codecs/VWR.js');
 
 
 // export helpers
@@ -49,6 +50,7 @@ exports.traditionalDecoders = {
   HDM: HDM.decode,
   RDID: RDID.decode,
   GRMT: GRMT.decode,
+  VWR: VWR.decode,
 };
 
 exports.encoders = new Object();

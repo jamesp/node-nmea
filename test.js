@@ -14,7 +14,8 @@ var s = [
 "$GPHDT,274.07,T*03",
 "$IIHDM,201.5,M*24",
 "$PRDID,-4.44,2.12,154.25*56",
-"$PGRMT,GPS19x-HVS Software Version 2.20,,,,,,,,*6F"
+"$PGRMT,GPS19x-HVS Software Version 2.20,,,,,,,,*6F",
+"$IIVWR,045.0,L,12.6,N,6.5,M,23.3,K*52"
 ];
 
 for (var i=0; i < s.length; i++) {
