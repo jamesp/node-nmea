@@ -10,6 +10,7 @@ var GSA = require('./codecs/GSA.js');
 var GGA = require('./codecs/GGA.js');
 var RMB = require('./codecs/RMB.js');
 var RMC = require('./codecs/RMC.js');
+var RSA = require('./codecs/RSA.js');
 var APB = require('./codecs/APB.js');
 var HDG = require('./codecs/HDG.js');
 var HDT = require('./codecs/HDT.js');
@@ -39,6 +40,7 @@ exports.traditionalDecoders = {
   GGA: GGA.decode,
   RMB: RMB.decode,
   RMC: RMC.decode,
+  RSA: RSA.decode,
   APB: APB.decode,
   GSA: GSA.decode,
   GSV: GSV.decode,
