@@ -8,11 +8,16 @@ var BWC = require('./codecs/BWC.js');
 var GSV = require('./codecs/GSV.js');
 var GSA = require('./codecs/GSA.js');
 var GGA = require('./codecs/GGA.js');
+var RMB = require('./codecs/RMB.js');
 var RMC = require('./codecs/RMC.js');
+var RSA = require('./codecs/RSA.js');
 var APB = require('./codecs/APB.js');
+var HDG = require('./codecs/HDG.js');
 var HDT = require('./codecs/HDT.js');
 var HDM = require('./codecs/HDM.js');
 var RDID = require('./codecs/RDID.js');
+var GRMT = require('./codecs/GRMT.js');
+var VWR = require('./codecs/VWR.js');
 
 
 // export helpers
@@ -33,7 +38,9 @@ var validLine = function (line) {
 
 exports.traditionalDecoders = {
   GGA: GGA.decode,
+  RMB: RMB.decode,
   RMC: RMC.decode,
+  RSA: RSA.decode,
   APB: APB.decode,
   GSA: GSA.decode,
   GSV: GSV.decode,
@@ -42,9 +49,12 @@ exports.traditionalDecoders = {
   MWV: MWV.decode,
   VTG: VTG.decode,
   GLL: GLL.decode,
+  HDG: HDG.decode,
   HDT: HDT.decode,
   HDM: HDM.decode,
   RDID: RDID.decode,
+  GRMT: GRMT.decode,
+  VWR: VWR.decode,
 };
 
 exports.encoders = new Object();
