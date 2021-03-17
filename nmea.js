@@ -18,7 +18,7 @@ var HDM = require('./codecs/HDM.js');
 var RDID = require('./codecs/RDID.js');
 var GRMT = require('./codecs/GRMT.js');
 var VWR = require('./codecs/VWR.js');
-
+var ROT = require('./codecs/ROT.js');
 
 // export helpers
 module.exports.Helpers= require('./helpers.js');
@@ -55,6 +55,7 @@ exports.traditionalDecoders = {
   RDID: RDID.decode,
   GRMT: GRMT.decode,
   VWR: VWR.decode,
+  ROT: ROT.decode,
 };
 
 exports.encoders = new Object();
@@ -66,6 +67,7 @@ exports.encoders[GLL.TYPE] = GLL;
 exports.encoders[HDT.TYPE] = HDT;
 exports.encoders[GGA.TYPE] = GGA;
 exports.encoders[HDM.TYPE] = HDM;
+exports.encoders[ROT.TYPE] = ROT;
 
 exports.parse = function (line) {
   if (validLine(line)) {
