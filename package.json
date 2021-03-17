@@ -10,9 +10,10 @@
     "main": "extended-nmea",
     "keywords": [
         "gps",
-        "nmea"
+        "nmea",
+        "parser"
     ],
-    "repository": "git://github.com/ricardoboss/node-nmea",
+    "repository": "git://github.com/ricardoboss/extended-nmea",
     "devDependencies": {
         "line-reader": "0.2",
         "mocha": "^8.1.1",
