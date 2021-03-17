@@ -2,7 +2,7 @@ var should = require('should');
 
 describe('GLL ', function () {
   it('parses', function () {
-    var msg = require("../nmea.js").parse("$GPGLL,6005.068,N,02332.341,E,095601,A,D*42");
+    var msg = require("../extended-nmea.js").parse("$GPGLL,6005.068,N,02332.341,E,095601,A,D*42");
     msg.should.have.property('type', 'geo-position');
     msg.should.have.property('sentence', 'GLL');
     msg.should.have.property('lat', '6005.068');
@@ -15,7 +15,7 @@ describe('GLL ', function () {
 
 describe('GLL', function () {
   it('encodes ok', function () {
-    var nmeaMsg = require("../nmea.js").encode('II', {
+    var nmeaMsg = require("../extended-nmea.js").encode('II', {
       type: 'geo-position',
       lat: 6005.06,
       latPole: 'N',

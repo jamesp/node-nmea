@@ -2,7 +2,7 @@ var should = require('should');
 
 describe('VTG parsing', function () {
   it('parses ok', function () {
-    var msg = require("../nmea.js").parse("$IIVTG,210.43,T,210.43,M,5.65,N,,,A*67");
+    var msg = require("../extended-nmea.js").parse("$IIVTG,210.43,T,210.43,M,5.65,N,,,A*67");
     msg.should.have.property('sentence', 'VTG');
     msg.should.have.property('type', 'track-info');
     msg.should.have.property('trackTrue', 210.43);
@@ -13,7 +13,7 @@ describe('VTG parsing', function () {
 
 describe('VTG encoding', function () {
   it('encodes ok', function () {
-    var nmeaMsg = require("../nmea.js").encode('XX', {
+    var nmeaMsg = require("../extended-nmea.js").encode('XX', {
       type: 'track-info',
       trackTrue: 210.43,
       trackMagnetic: 209.43,

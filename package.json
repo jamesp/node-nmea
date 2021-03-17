@@ -1,15 +1,18 @@
 {
-    "name": "nmea",
-    "description": "A parser for the NMEA 0183 GPS Receiver protocol",
-    "version": "0.1.1",
-    "author": "James Penn <james@jamespenn.co.uk>",
+    "name": "extended-nmea",
+    "description": "A parser for the NMEA 0183 protocol and some additional formats.",
+    "version": "1.0.0",
+    "authors": [
+        "James Penn <james@jamespenn.co.uk>",
+        "Ricardo Boss <contact@ricardoboss.de>"
+    ],
     "license": "MIT",
-    "main": "nmea",
+    "main": "extended-nmea",
     "keywords": [
         "gps",
         "nmea"
     ],
-    "repository": "git://github.com/jamesp/node-nmea",
+    "repository": "git://github.com/ricardoboss/node-nmea",
     "devDependencies": {
         "line-reader": "0.2",
         "mocha": "^8.1.1",

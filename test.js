@@ -1,4 +1,4 @@
-var nmea = require('./nmea')
+var nmea = require('./extended-nmea.js')
 
 var s = [
 "$GPGSA,A,3,27,08,11,10,26,21,18,16,07,20,,,1.60,0.97,1.27*0F",
