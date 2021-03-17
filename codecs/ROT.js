@@ -28,7 +28,7 @@ exports.decode = function (fields) {
 
 exports.encode = function (talker, msg) {
   var result = ['$' + talker + exports.ID];
-  result.push(helpers.encodeDegrees(msg.rateOfTurn));
+  result.push(helpers.encodeFixed(msg.rateOfTurn, 2));
   result.push('A');
   var resultMsg = result.join(',');
   return resultMsg + helpers.computeChecksum(resultMsg);
