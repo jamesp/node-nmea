@@ -16,8 +16,8 @@
         "should": "~2.0.2"
     },
     "dependencies": {
-        "through": ">=2.2.7 <3",
-        "JSONStream": "0.7"
+        "JSONStream": "0.7",
+        "through": ">=2.2.7 <3"
     },
     "scripts": {
         "test": "mocha"
