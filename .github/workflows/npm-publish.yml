@@ -16,6 +16,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
+      - run: npm install
       - run: npm ci
       - run: npm test
 
@@ -29,6 +30,7 @@ jobs:
         with:
           node-version: 12
           registry-url: https://registry.npmjs.org/
+      - run: npm install
       - run: npm ci
       - run: npm publish
         env:
